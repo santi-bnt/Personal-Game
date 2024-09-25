@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://gmw5egfm4n1i"]
+
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_o6dts"]
+[ext_resource type="Script" path="res://scenes/play.gd" id="2_f8pc5"]
+[ext_resource type="PackedScene" uid="uid://by01i7dmjfqmn" path="res://scenes/ParallaxBackground.tscn" id="3_n0ouj"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_mm8cp"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_d0ptp"]
+
+[node name="menu" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_o6dts")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -534.0
+offset_top = -194.0
+offset_right = -323.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="play" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+text = "START"
+icon = SubResource("Texture2DRD_mm8cp")
+flat = true
+icon_alignment = 1
+script = ExtResource("2_f8pc5")
+metadata/_edit_lock_ = true
+
+[node name="exit" type="Button" parent="VBoxContainer/play"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -4.289
+anchor_top = -3.874
+anchor_right = -4.289
+anchor_bottom = -3.874
+offset_left = 277.453
+offset_top = 175.761
+offset_right = 488.453
+offset_bottom = 215.761
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+button_group = SubResource("ButtonGroup_d0ptp")
+text = "EXIT"
+icon = SubResource("Texture2DRD_mm8cp")
+flat = true
+icon_alignment = 1
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("3_n0ouj")]
+
+[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/play/exit" to="." method="_on_exit_pressed"]
